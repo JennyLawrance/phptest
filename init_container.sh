@@ -35,9 +35,6 @@ fi
 echo 'Start nginx'
 service nginx start
 
-oryxArgs="-appPath $appPath -output $startupCommandPath \
-    -bindPort $PORT -startupCommand '$userStartupCommand'"
+echo 'Start php-fpm'
 
-echo "Running oryx $oryxArgs"
-eval oryx $oryxArgs
-$startupCommandPath
+php-fpm
