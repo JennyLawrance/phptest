@@ -1,10 +1,14 @@
-FROM mcr.microsoft.com/oryx/base:php-fpm-7.3-20191213.15
+FROM arroycdocker/php-fpm-nginx:7.3-latest
 LABEL maintainer="Azure App Services Container Images <appsvc-images@microsoft.com>"
 
 ENV PHP_VERSION 7.3
 
 COPY init_container.sh /bin/
 COPY hostingstart.html /home/site/wwwroot/hostingstart.html
+
+#COPY nginx default site config to /etc/nginx/sites-available/default
+COPY nginx-default-site /etc/nginx/sites-available/default
+
 
 RUN chmod 755 /bin/init_container.sh \
     && mkdir -p /home/LogFiles/ \
